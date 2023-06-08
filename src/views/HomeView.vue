@@ -1,12 +1,9 @@
-<template>
-  <div class="home"></div>
+<template >
+  <div class="home">
    
-
-  
-  <div v-for="anime in data" :key="anime.mal_id" class="grid grid-flow-row auto-rows-max">
-    <img :src="anime.entry[0].images.jpg.image_url"/>
-  <div >{{ anime.entry[0].title }}</div></div>
-
+  <RecommendationView/>
+  <ScheduleView/>
+  </div>
 </template>
 
 <script>
@@ -15,21 +12,18 @@ import fetchData from '@/data/fetchData'
 
 import { ref } from 'vue'
 
+import RecommendationView from './components/RecommendationView.vue'
+import ScheduleView from './components/ScheduleView.vue';
+
 export default {
   name: 'HomeView',
   components: {
-    
-  },
+    RecommendationView,
+    ScheduleView
+}, 
 
-
-  setup(){
-    
-    const data=ref()
-   fetchData('recommendations/anime')
-   .then(response=>{
-     data.value=response.data
-   })
-    return{data}
-  }
+  
 }
 </script>
+
+
